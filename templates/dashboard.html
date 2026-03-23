@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-header" style="margin-bottom: 2rem;">
+    <h1 style="font-size: 2rem;">Welcome, {{ current_user.username }}!</h1>
+    <p style="color: var(--text-muted);">Ready to learn something new today?</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+    <div class="card">
+        <h3><i data-lucide="user" style="vertical-align: middle; margin-right: 0.5rem; color: var(--primary);"></i> Your Profile</h3>
+        <p style="color: var(--text-muted); margin: 1rem 0;">Keep your skills up to date to get better matches.</p>
+        <a href="/profile/{{ current_user.id }}" class="btn btn-outline">View Profile</a>
+    </div>
+
+    <div class="card">
+        <h3><i data-lucide="search" style="vertical-align: middle; margin-right: 0.5rem; color: var(--primary);"></i> Find Skills</h3>
+        <p style="color: var(--text-muted); margin: 1rem 0;">Search for users who can teach you what you want to learn.</p>
+        <a href="/search" class="btn btn-primary">Search Now</a>
+    </div>
+
+    <div class="card">
+        <h3><i data-lucide="message-square" style="vertical-align: middle; margin-right: 0.5rem; color: var(--primary);"></i> Barter Requests</h3>
+        <p style="color: var(--text-muted); margin: 1rem 0;">Manage your incoming and outgoing, and scheduled sessions.</p>
+        <a href="/requests" class="btn btn-outline">View Requests</a>
+    </div>
+</div>
+{% endblock %}

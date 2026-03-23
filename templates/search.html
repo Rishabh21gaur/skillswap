@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 3rem;">
+    <h1 style="text-align: center; margin-bottom: 1.5rem;">Find a Skill Mentor</h1>
+    <form method="GET" action="{{ url_for('search') }}" style="display: flex; gap: 0.5rem;">
+        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search for a skill (e.g. Graphic Design)" style="flex: 1;">
+        <button type="submit" class="btn btn-primary"><i data-lucide="search"></i> Search</button>
+    </form>
+</div>
+
+{% if query %}
+    <h3 style="margin-bottom: 1.5rem;">Search Results for "{{ query }}"</h3>
+{% else %}
+    <h3 style="margin-bottom: 1.5rem;">Recommended Mentors based on your wanted skills</h3>
+{% endif %}
+
+{% if users %}
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        {% for user in users %}
+            <div class="card" style="display: flex; flex-direction: column; height: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">{{ user.username }}</h3>
+                    <div style="color: #F59E0B; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 0.25rem;">
+                        <i data-lucide="star" style="width: 14px; height: 14px;"></i> {{ "%.1f"|format(user.average_rating) }}
+                    </div>
+                </div>
+                
+                <div style="flex: 1; margin-bottom: 1rem;">
+                    <strong style="font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">Teaches:</strong>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.25rem;">
+                        {% if user.skills_have %}
+                            {% for skill in user.skills_have.split(',') %}
+                                {% if skill.strip() %}
+                                    <span style="background-color: rgba(16, 185, 129, 0.1); color: var(--secondary); padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 500; font-size: 0.75rem;">{{ skill.strip() }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <span style="color: var(--text-muted); font-size: 0.8rem;">None specified</span>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <a href="/profile/{{ user.id }}" class="btn btn-outline" style="width: 100%; justify-content: center;">View Profile</a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="card" style="text-align: center; padding: 3rem;">
+        <div style="color: var(--text-muted); margin-bottom: 1rem;">
+            <i data-lucide="frown" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 style="color: var(--text-main);">No matches found</h3>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Try adjusting your search term or update your wanted skills.</p>
+    </div>
+{% endif %}
+{% endblock %}

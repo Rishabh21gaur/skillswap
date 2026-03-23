@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+    <h1>Trade Skills, Not Money</h1>
+    <p>SkillSwap is a community-driven platform where you can learn what you want by teaching what you know. Join the knowledge economy today.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+        <a href="{{ url_for('signup') }}" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.75rem 2rem;">Get Started</a>
+        <a href="#how-it-works" class="btn btn-outline" style="font-size: 1.1rem; padding: 0.75rem 2rem;">Learn More</a>
+    </div>
+</div>
+
+<div class="card" id="how-it-works" style="margin-top: 3rem; transform: none; box-shadow: var(--shadow-md);">
+    <h2 style="text-align: center; margin-bottom: 2rem;">How It Works</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">
+        <div>
+            <div style="color: var(--primary); margin-bottom: 1rem;"><i data-lucide="user-plus" style="width: 48px; height: 48px;"></i></div>
+            <h3>1. Create Profile</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">List skills you have and skills you want to learn.</p>
+        </div>
+        <div>
+            <div style="color: var(--primary); margin-bottom: 1rem;"><i data-lucide="search" style="width: 48px; height: 48px;"></i></div>
+            <h3>2. Find Matches</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Discover users who want to learn from you and can teach you.</p>
+        </div>
+        <div>
+            <div style="color: var(--primary); margin-bottom: 1rem;"><i data-lucide="handshake" style="width: 48px; height: 48px;"></i></div>
+            <h3>3. Barter Knowledge</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Schedule sessions and learn for free together.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

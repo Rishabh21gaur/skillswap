@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="max-width: 600px; margin: 0 auto;">
+    <h2 style="margin-bottom: 1.5rem;">Edit Profile</h2>
+    <form method="POST" action="{{ url_for('edit_profile') }}">
+        <div class="form-group">
+            <label for="bio">About Me</label>
+            <textarea id="bio" name="bio" class="form-control" rows="4" placeholder="Tell others about yourself...">{{ current_user.bio or '' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="skills_have">Skills I Have to Offer (Comma separated)</label>
+            <input type="text" id="skills_have" name="skills_have" class="form-control" value="{{ current_user.skills_have or '' }}" placeholder="e.g. Python, Piano, Spanish">
+            <small style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: 0.25rem;">These are the skills you can teach others.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="skills_want">Skills I Want to Learn (Comma separated)</label>
+            <input type="text" id="skills_want" name="skills_want" class="form-control" value="{{ current_user.skills_want or '' }}" placeholder="e.g. Photography, Cooking, French">
+            <small style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: 0.25rem;">We'll use these to suggest matching users.</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Save Profile</button>
+    </form>
+</div>
+{% endblock %}

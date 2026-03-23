@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="max-width: 500px; margin: 0 auto;">
+    <h2 style="margin-bottom: 0.5rem;">Send Barter Request</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Propose a skill exchange with <strong>{{ receiver.username }}</strong>.</p>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="skill_requested">Skill I Want from {{ receiver.username }}</label>
+            <input type="text" id="skill_requested" name="skill_requested" class="form-control" required placeholder="e.g. Guitar Lessons">
+        </div>
+        
+        <div class="form-group">
+            <label for="skill_offered">Skill I Offer in Return</label>
+            <input type="text" id="skill_offered" name="skill_offered" class="form-control" required placeholder="e.g. Web Development">
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <a href="/profile/{{ receiver.id }}" class="btn btn-outline" style="flex: 1; justify-content: center;">Cancel</a>
+            <button type="submit" class="btn btn-primary" style="flex: 1; justify-content: center;">Send Request</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
