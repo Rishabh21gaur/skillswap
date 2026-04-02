@@ -29,6 +29,12 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
+@app.route('/reset-db-super-secret-key')
+def reset_db():
+    db.drop_all()
+    db.create_all()
+    return "Database has been completely reset and all data is erased! You can now sign up securely."
+
 # --- Auth Routes ---
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
